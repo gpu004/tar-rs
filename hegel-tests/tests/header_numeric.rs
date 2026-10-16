@@ -96,7 +96,7 @@ fn header_numeric_octal_fields_within_supported_range(tc: TestCase) {
 
 #[hegel::test(report_multiple_failures = true)]
 #[hegel::reproduce_failure("AXiclcihDQAACMTAIvmpGR2CAP01l1RMCpbkqr8mDTNxAQE=")]
-#[ignore = "fails: uid 2^63 is read back as zero"]
+#[ignore = "fails: uid 2^63 is read back as zero (https://github.com/gpu004/tar-rs/issues/4)"]
 fn header_numeric_uid_overflow(tc: TestCase) {
     let (_, uid, _, _, _, _, _, _, _, _) = draw_full_range(&tc);
     let mut actual = Vec::new();
@@ -110,7 +110,7 @@ fn header_numeric_uid_overflow(tc: TestCase) {
 
 #[hegel::test(report_multiple_failures = true)]
 #[hegel::reproduce_failure("AXichcmhDQAACMTAIvmpGR0UIUF8zYmKScEl2epNSwMwEQEB")]
-#[ignore = "fails: gid 2^63 is read back as zero"]
+#[ignore = "fails: gid 2^63 is read back as zero (https://github.com/gpu004/tar-rs/issues/4)"]
 fn header_numeric_gid_overflow(tc: TestCase) {
     let (_, _, gid, _, _, _, _, _, _, _) = draw_full_range(&tc);
     let mut actual = Vec::new();
@@ -124,7 +124,7 @@ fn header_numeric_gid_overflow(tc: TestCase) {
 
 #[hegel::test(report_multiple_failures = true)]
 #[hegel::reproduce_failure("AXicfcqhEQAADMJAenVM0f2nLIeHmDchFAeZNdcn8xiZAJs=")]
-#[ignore = "fails: mode 2^21 is read back as zero"]
+#[ignore = "fails: mode 2^21 is read back as zero (https://github.com/gpu004/tar-rs/issues/4)"]
 fn header_numeric_mode_overflow(tc: TestCase) {
     let (_, _, _, _, mode, _, _, _, _, _) = draw_full_range(&tc);
     let mut actual = Vec::new();
@@ -138,7 +138,7 @@ fn header_numeric_mode_overflow(tc: TestCase) {
 
 #[hegel::test(report_multiple_failures = true)]
 #[hegel::reproduce_failure("AXichcoxEQAADMJAet1QUf8qyyEAsvwSQnFQWXNpehfBAJs=")]
-#[ignore = "fails: device major 2^21 is read back as zero in GNU and UStar"]
+#[ignore = "fails: device major 2^21 is read back as zero in GNU and UStar (https://github.com/gpu004/tar-rs/issues/4)"]
 fn header_numeric_device_major_overflow(tc: TestCase) {
     let (_, _, _, _, _, major, _, _, _, _) = draw_full_range(&tc);
     let mut actual = Vec::new();
@@ -152,7 +152,7 @@ fn header_numeric_device_major_overflow(tc: TestCase) {
 
 #[hegel::test(report_multiple_failures = true)]
 #[hegel::reproduce_failure("AXicjcmhEQAADMJAenVM0f2nLIdGEPMihOKgZc3F+xbpAJs=")]
-#[ignore = "fails: device minor 2^21 is read back as zero in GNU and UStar"]
+#[ignore = "fails: device minor 2^21 is read back as zero in GNU and UStar (https://github.com/gpu004/tar-rs/issues/4)"]
 fn header_numeric_device_minor_overflow(tc: TestCase) {
     let (_, _, _, _, _, _, minor, _, _, _) = draw_full_range(&tc);
     let mut actual = Vec::new();

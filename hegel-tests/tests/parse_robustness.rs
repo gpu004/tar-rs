@@ -103,7 +103,7 @@ fn parse_mutated_valid_archives_terminate(tc: TestCase) {
 #[hegel::reproduce_failure(
     "AXicbY1RCgAgCEP3rK8u0DW6/+lSpEhIYXOi25TXwMGS6IErJu/cqemeVaKqzy/V/Ria9CaHxGADY1QBOQ=="
 )]
-#[ignore = "fails: entries() reports a trailing error that entries_with_seek() omits"]
+#[ignore = "fails: entries() reports a trailing error that entries_with_seek() omits (https://github.com/gpu004/tar-rs/issues/2)"]
 fn parse_mutated_valid_archives_reader_equivalence(tc: TestCase) {
     let bytes = mutated_archive(&tc);
     let started = Instant::now();
@@ -124,7 +124,7 @@ fn parse_mutated_valid_archives_reader_equivalence(tc: TestCase) {
 #[hegel::reproduce_failure(
     "AXicbU1BDgAgCALr1Af6Rv9/XZqrxaZuIE5hwmvQwZLYA1dM3rlDwztToqril+p+DQ34k480cgNjUAE4"
 )]
-#[ignore = "fails: truncated entry reads fewer bytes than its declared size"]
+#[ignore = "fails: truncated entry reads fewer bytes than its declared size (https://github.com/gpu004/tar-rs/issues/1)"]
 fn parse_mutated_valid_archives_declared_size(tc: TestCase) {
     let bytes = mutated_archive(&tc);
     let started = Instant::now();

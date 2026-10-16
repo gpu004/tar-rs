@@ -67,7 +67,7 @@ fn pax_roundtrip_keys_without_equals(tc: TestCase) {
 
 #[hegel::test(report_multiple_failures = true)]
 #[hegel::reproduce_failure("AXicY2EAAi5GIMHIwgQkDYDYFoiZGWAEAAlrAIo=")]
-#[ignore = "fails: PAX key ending in '=' is parsed as part of its value"]
+#[ignore = "fails: PAX key ending in '=' is parsed as part of its value (https://github.com/gpu004/tar-rs/issues/3)"]
 fn pax_roundtrip_key_ending_in_equals(tc: TestCase) {
     let extensions = draw_extensions(&tc, true);
     assert_pax_roundtrip(&tc, extensions);
@@ -75,7 +75,7 @@ fn pax_roundtrip_key_ending_in_equals(tc: TestCase) {
 
 #[hegel::test(report_multiple_failures = true)]
 #[hegel::reproduce_failure("AXicY2EAAi5GIMHIAiJtgZiZAUYAAAWdAFk=")]
-#[ignore = "fails: PAX key '=' is rejected as malformed"]
+#[ignore = "fails: PAX key '=' is rejected as malformed (https://github.com/gpu004/tar-rs/issues/3)"]
 fn pax_roundtrip_equals_only_key(tc: TestCase) {
     let extensions = draw_extensions(&tc, true);
     assert_pax_roundtrip(&tc, extensions);
