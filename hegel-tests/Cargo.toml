@@ -1,0 +1,12 @@
+[package]
+name = "tar-hegel-tests"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[dev-dependencies]
+hegeltest = "0.49"
+tar = { path = ".." }
+tempfile = "3"

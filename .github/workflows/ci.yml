@@ -52,6 +52,15 @@ jobs:
       run: sudo -E $(which cargo) test
       if: ${{ matrix.os == 'ubuntu-latest' }}
 
+  hegel:
+    name: Hegel property tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+    - uses: actions/checkout@v6
+    - uses: dtolnay/rust-toolchain@stable
+    - run: cargo test --manifest-path hegel-tests/Cargo.toml
+
   wasm:
     name: Wasm
     runs-on: ubuntu-latest
@@ -81,9 +90,6 @@ jobs:
     steps:
     - uses: actions/checkout@v6
     - uses: obi1kenobi/cargo-semver-checks-action@v2
-      with:
-        # Pinned until cargo-semver-checks supports rustdoc format v57 (Rust 1.93+)
-        rust-toolchain: "1.92.0"
 
   revdep:
     name: Reverse deps
@@ -124,13 +130,14 @@ jobs:
   # repository settings as the single required status check.
   required-checks:
     if: always()
-    needs: [test, wasm, rustfmt, semver-checks, revdep, publish_docs]
+    needs: [test, hegel, wasm, rustfmt, semver-checks, revdep, publish_docs]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - run: exit 1
         if: >-
           needs.test.result != 'success' ||
+          needs.hegel.result != 'success' ||
           needs.wasm.result != 'success' ||
           needs.rustfmt.result != 'success' ||
           needs.semver-checks.result != 'success' ||
